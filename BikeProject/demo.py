@@ -6,9 +6,9 @@ data_path = 'Bike-Sharing-Dataset/hour.csv'
 
 rides = pd.read_csv(data_path)
 
-rides.head()
+print(rides.head())
 
-rides[:24*10].plot(x='dteday', y='cnt')
+print(rides[:24*10].plot(x='dteday', y='cnt'))
 
 
 dummy_fields = ['season', 'weathersit', 'mnth', 'hr', 'weekday']
@@ -45,6 +45,7 @@ test_features, test_targets = test_data.drop(target_fields, axis=1), test_data[t
 # Hold out the last 60 days or so of the remaining data as a validation set
 train_features, train_targets = features[:-60*24], targets[:-60*24]
 val_features, val_targets = features[-60*24:], targets[-60*24:]
+
 
 
 
@@ -266,4 +267,7 @@ dates = pd.to_datetime(rides.ix[test_data.index]['dteday'])
 dates = dates.apply(lambda d: d.strftime('%b %d'))
 ax.set_xticks(np.arange(len(dates))[12::24])
 _ = ax.set_xticklabels(dates[12::24], rotation=45)
+
+
+
 
